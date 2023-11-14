@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Product>Azure Text Translator</Product>
+        <Product>Microsoft Translator</Product>
         <Description>Azure AI service for text translation</Description>
-        <Version>1.0.2</Version>
-        <AssemblyName>Apps.AzureTextTranslator</AssemblyName>
+        <Version>1.0.0</Version>
+        <AssemblyName>Apps.MicrosoftTranslator</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
