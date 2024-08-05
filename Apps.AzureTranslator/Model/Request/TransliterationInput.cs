@@ -1,8 +1,8 @@
-using Apps.AzureTranslator.DataSourceHandlers;
+using Apps.MicrosoftTranslator.DataSourceHandlers;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Dynamic;
 
-namespace Apps.AzureTranslator.Model.Request;
+namespace Apps.MicrosoftTranslator.Model.Request;
 
 public class TransliterationInput
 {

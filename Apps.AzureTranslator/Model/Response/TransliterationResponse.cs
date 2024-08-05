@@ -2,7 +2,7 @@ using Azure;
 using Azure.AI.Translation.Text;
 using Blackbird.Applications.Sdk.Common;
 
-namespace Apps.AzureTranslator.Model.Response;
+namespace Apps.MicrosoftTranslator.Model.Response;
 
 public class TransliterationResponse
 {

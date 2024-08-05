@@ -1,4 +1,4 @@
-namespace Apps.AzureTranslator.Constants;
+namespace Apps.MicrosoftTranslator.Constants;
 
 public static class CredsNames
 {
