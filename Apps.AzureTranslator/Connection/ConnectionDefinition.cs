@@ -1,8 +1,8 @@
-using Apps.AzureTranslator.Constants;
+using Apps.MicrosoftTranslator.Constants;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
 
-namespace Apps.AzureTranslator.Connection;
+namespace Apps.MicrosoftTranslator.Connection;
 
 public class ConnectionDefinition : IConnectionDefinition
 {

@@ -1,12 +1,13 @@
 using Azure;
 using Azure.AI.Translation.Text;
 using Blackbird.Applications.Sdk.Common;
+using Blackbird.Applications.Sdk.Common.Files;
 
 namespace Apps.MicrosoftTranslator.Model.Response;
 
-public class TranslationResponse
+public class FileTranslationResponse
 {
-    [Display("Translated text")] public string TranslatedText { get; set; }
+    [Display("Translated file")] public FileReference File { get; set; }
 
     [Display("Target language")] public string TargetLanguage { get; set; }
 
@@ -15,12 +16,12 @@ public class TranslationResponse
     [Display("Source language detecting score")]
     public float SourceLanguageDetectingScore { get; set; }
 
-    public TranslationResponse(Response<IReadOnlyList<TranslatedTextItem>> response)
+    public FileTranslationResponse(Response<IReadOnlyList<TranslatedTextItem>> response, FileReference file)
     {
         var translation = response.Value.First().Translations.First();
         var detectedLanguage = response.Value.First().DetectedLanguage;
 
-        TranslatedText = translation.Text;
+        File = file;
         TargetLanguage = translation.To;
         DetectedSourceLanguage = detectedLanguage.Language;
         SourceLanguageDetectingScore = detectedLanguage.Score;

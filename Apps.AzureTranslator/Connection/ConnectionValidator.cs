@@ -1,8 +1,8 @@
-using Apps.AzureTranslator.Api;
+using Apps.MicrosoftTranslator.Api;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Connections;
 
-namespace Apps.AzureTranslator.Connection;
+namespace Apps.MicrosoftTranslator.Connection;
 
 public class ConnectionValidator : IConnectionValidator
 {

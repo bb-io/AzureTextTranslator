@@ -1,9 +1,9 @@
-using Apps.AzureTranslator.Api;
+using Apps.MicrosoftTranslator.Api;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Authentication;
 using Blackbird.Applications.Sdk.Common.Invocation;
 
-namespace Apps.AzureTranslator.Invocables;
+namespace Apps.MicrosoftTranslator.Invocables;
 
 public class AzureTextTranslatorInvocable : BaseInvocable
 {
