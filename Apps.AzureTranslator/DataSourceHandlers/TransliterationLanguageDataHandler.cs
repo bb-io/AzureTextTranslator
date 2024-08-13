@@ -1,8 +1,8 @@
-using Apps.AzureTranslator.Invocables;
+using Apps.MicrosoftTranslator.Invocables;
 using Blackbird.Applications.Sdk.Common.Dynamic;
 using Blackbird.Applications.Sdk.Common.Invocation;
 
-namespace Apps.AzureTranslator.DataSourceHandlers;
+namespace Apps.MicrosoftTranslator.DataSourceHandlers;
 
 public class TransliterationLanguageDataHandler : AzureTextTranslatorInvocable, IAsyncDataSourceHandler
 {

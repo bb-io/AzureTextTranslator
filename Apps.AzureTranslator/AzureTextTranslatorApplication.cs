@@ -1,7 +1,7 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Metadata;
 
-namespace Apps.AzureTranslator;
+namespace Apps.MicrosoftTranslator;
 
 public class AzureTextTranslatorApplication : IApplication, ICategoryProvider
 {
