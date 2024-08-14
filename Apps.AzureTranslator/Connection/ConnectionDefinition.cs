@@ -19,7 +19,7 @@ public class ConnectionDefinition : IConnectionDefinition
                 {
                     DisplayName = "Document translation endpoint",
                     Description =
-                        "We expect something like this: https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.com. ",
+                        "We expect something like this: https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.com",
                     Sensitive = false
                 },   
                 new(CredsNames.Region) { DisplayName = "Location/Region", },

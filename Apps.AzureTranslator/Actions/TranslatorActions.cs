@@ -18,14 +18,14 @@ namespace Apps.MicrosoftTranslator.Actions;
 public class TranslatorActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient)
     : AzureTextTranslatorInvocable(invocationContext)
 {
-    [Action("Translate", Description = "Translate text")]
+    [Action("Translate", Description = "Translates the text to the target language.")]
     public async Task<TranslationResponse> Translate([ActionParameter] TextTranslationInput input)
     {
         var response = await Client.TranslateAsync(input.TargetLanguage, input.Text, input.SourceLanguage);
         return new(response);
     }
 
-    [Action("Translate document", Description = "Translate content of the file")]
+    [Action("Translate document", Description = "Translates the document to the target language. Under the hood we are using synchronous translation.")]
     public async Task<TranslateDocumentResponse> TranslateDocument([ActionParameter] FileModel file,
         [ActionParameter] TranslationInput input)
     {
@@ -67,7 +67,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
         };
     }
 
-    [Action("Transliterate", Description = "Transliterate text")]
+    [Action("Transliterate", Description = "Transliterates the text to the target script.")]
     public async Task<TransliterationResponse> Transliterate([ActionParameter] TransliterationInput input)
     {
         var response =
