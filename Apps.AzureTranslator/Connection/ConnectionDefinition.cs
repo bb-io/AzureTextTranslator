@@ -15,8 +15,15 @@ public class ConnectionDefinition : IConnectionDefinition
             ConnectionUsage = ConnectionUsage.Actions,
             ConnectionProperties = new List<ConnectionProperty>()
             {
-                new(CredsNames.ApiKey) { DisplayName = "API key", Sensitive = true },
+                new(CredsNames.DocumentTranslationUrl)
+                {
+                    DisplayName = "Document translation endpoint",
+                    Description =
+                        "We expect something like this: https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.com. ",
+                    Sensitive = false
+                },   
                 new(CredsNames.Region) { DisplayName = "Location/Region", },
+                new(CredsNames.ApiKey) { DisplayName = "API key", Sensitive = true }
             }
         }
     };
