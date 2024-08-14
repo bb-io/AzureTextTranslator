@@ -15,8 +15,15 @@ public class ConnectionDefinition : IConnectionDefinition
             ConnectionUsage = ConnectionUsage.Actions,
             ConnectionProperties = new List<ConnectionProperty>()
             {
-                new(CredsNames.ApiKey) { DisplayName = "API key", Sensitive = true },
+                new(CredsNames.DocumentTranslationUrl)
+                {
+                    DisplayName = "Document translation endpoint",
+                    Description =
+                        "We expect something like this: https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.com",
+                    Sensitive = false
+                },   
                 new(CredsNames.Region) { DisplayName = "Location/Region", },
+                new(CredsNames.ApiKey) { DisplayName = "API key", Sensitive = true }
             }
         }
     };
@@ -34,6 +41,12 @@ public class ConnectionDefinition : IConnectionDefinition
             AuthenticationCredentialsRequestLocation.None,
             CredsNames.Region,
             values[CredsNames.Region]
+        );
+        
+        yield return new AuthenticationCredentialsProvider(
+            AuthenticationCredentialsRequestLocation.None,
+            CredsNames.DocumentTranslationUrl,
+            values[CredsNames.DocumentTranslationUrl]
         );
     }
 }
