@@ -42,5 +42,11 @@ public class ConnectionDefinition : IConnectionDefinition
             CredsNames.Region,
             values[CredsNames.Region]
         );
+        
+        yield return new AuthenticationCredentialsProvider(
+            AuthenticationCredentialsRequestLocation.None,
+            CredsNames.DocumentTranslationUrl,
+            values[CredsNames.DocumentTranslationUrl]
+        );
     }
 }
