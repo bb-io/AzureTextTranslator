@@ -4,16 +4,13 @@ using Blackbird.Applications.Sdk.Common.Invocation;
 
 namespace Apps.MicrosoftTranslator.DataSourceHandlers;
 
-public class TransliterationLanguageDataHandler : AzureTextTranslatorInvocable, IAsyncDataSourceHandler
+public class TransliterationLanguageDataHandler(InvocationContext invocationContext)
+    : AzureTextTranslatorInvocable(invocationContext), IAsyncDataSourceHandler
 {
-    public TransliterationLanguageDataHandler(InvocationContext invocationContext) : base(invocationContext)
-    {
-    }
-
     public async Task<Dictionary<string, string>> GetDataAsync(DataSourceContext context,
         CancellationToken cancellationToken)
     {
-        var languages = await Client.GetLanguagesAsync(cancellationToken: cancellationToken);
+        var languages = await Client.GetSupportedLanguagesAsync(cancellationToken: cancellationToken);
 
         return languages.Value.Transliteration
             .Where(x => context.SearchString is null ||

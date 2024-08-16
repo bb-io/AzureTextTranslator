@@ -22,8 +22,8 @@ public class FileTranslationResponse
         var detectedLanguage = response.Value.First().DetectedLanguage;
 
         File = file;
-        TargetLanguage = translation.To;
+        TargetLanguage = translation.TargetLanguage;
         DetectedSourceLanguage = detectedLanguage.Language;
-        SourceLanguageDetectingScore = detectedLanguage.Score;
+        SourceLanguageDetectingScore = detectedLanguage.Confidence;
     }
 }

@@ -4,6 +4,7 @@ using Apps.MicrosoftTranslator.Model;
 using Apps.MicrosoftTranslator.Model.Request;
 using Apps.MicrosoftTranslator.Model.Response;
 using Apps.MicrosoftTranslator.Utils;
+using Azure.AI.Translation.Text;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
 using Blackbird.Applications.Sdk.Common.Invocation;
@@ -21,7 +22,33 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
     [Action("Translate", Description = "Translates the text to the target language.")]
     public async Task<TranslationResponse> Translate([ActionParameter] TextTranslationInput input)
     {
-        var response = await Client.TranslateAsync(input.TargetLanguage, input.Text, input.SourceLanguage);
+        ProfanityAction? profanityAction = input.ProfanityAction != null 
+            ? Enum.Parse<ProfanityAction>(input.ProfanityAction, true) 
+            : null;
+
+        ProfanityMarker? profanityMarker = input.ProfanityMarker != null 
+            ? Enum.Parse<ProfanityMarker>(input.ProfanityMarker, true) 
+            : null;
+
+        TextType? textType = input.TextType != null 
+            ? new TextType(input.TextType) 
+            : (TextType?)null;
+
+        var response = await Client.TranslateAsync(new[] { input.TargetLanguage }, 
+            new[] { input.Text }, 
+            sourceLanguage: input.SourceLanguage, 
+            textType: textType?.ToString(), 
+            category: input.Category,
+            profanityAction: profanityAction,
+            profanityMarker: profanityMarker,
+            includeAlignment: input.IncludeAlignment ?? false,
+            includeSentenceLength: input.IncludeSentenceLength ?? false,
+            suggestedFrom: input.SuggestedFrom,
+            fromScript: input.FromScript,
+            toScript: input.ToScript,
+            allowFallback: input.AllowFallback ?? false
+        );
+
         return new(response);
     }
 
@@ -46,6 +73,17 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
         {
             requestUrl += $"&sourceLanguage={input.SourceLanguage}";
         }
+        
+        if (!string.IsNullOrEmpty(input.Category))
+        {
+            requestUrl += $"&category={input.Category}";
+        }
+        
+        if (input.AllowFallback.HasValue)
+        {
+            requestUrl += $"&allowFallback={input.AllowFallback.Value}";
+        }
+        
         var request = new RestRequest(requestUrl, Method.Post);
         request.AddHeader("Ocp-Apim-Subscription-Key", key);
         request.AlwaysMultipartFormData = true;
