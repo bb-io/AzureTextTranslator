@@ -1,3 +1,4 @@
+using Apps.MicrosoftTranslator.DataSourceHandlers;
 using Apps.MicrosoftTranslator.DataSourceHandlers.Static;
 using Azure.AI.Translation.Text;
 using Blackbird.Applications.Sdk.Common;
@@ -25,7 +26,7 @@ public class TextTranslationInput : TranslationInput
     [Display("Include sentence length", Description = "Specifies whether to include sentence boundaries for the input text and the translated text. Possible values are: true or false (default).")]
     public bool? IncludeSentenceLength { get; set; }
 
-    [Display("Suggested from", Description = "Specifies a fallback language if the language of the input text can't be identified."), DataSource(typeof(TranslationLanguage))]
+    [Display("Suggested from", Description = "Specifies a fallback language if the language of the input text can't be identified."), DataSource(typeof(TranslationLanguageDataHandler))]
     public string? SuggestedFrom { get; set; }
 
     [Display("From script", Description = "Specifies the script of the input text.")]
