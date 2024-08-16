@@ -21,8 +21,8 @@ public class TranslationResponse
         var detectedLanguage = response.Value.First().DetectedLanguage;
 
         TranslatedText = translation.Text;
-        TargetLanguage = translation.To;
+        TargetLanguage = translation.TargetLanguage;
         DetectedSourceLanguage = detectedLanguage.Language;
-        SourceLanguageDetectingScore = detectedLanguage.Score;
+        SourceLanguageDetectingScore = detectedLanguage.Confidence;
     }
 }
