@@ -37,7 +37,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
         var response = await Client.TranslateAsync(new[] { input.TargetLanguage }, 
             new[] { input.Text }, 
             sourceLanguage: input.SourceLanguage, 
-            textType: textType?.ToString(), 
+            textType: textType, 
             category: input.Category,
             profanityAction: profanityAction,
             profanityMarker: profanityMarker,
