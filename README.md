@@ -61,7 +61,7 @@ Translates the document to the target language, using synchronous translation un
 - **Category**: Specifies the category (domain) of the translation, used to get translations from a customized system.
 - **Allow fallback**: Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist. Possible values are: `true` or `false`.  Allow fallback = false specifies that the translation should only use systems trained for the category specified by the request. If a translation from language X to language Y requires chaining through a pivot language E, then all the systems in the chain (X → E and E → Y) need to be custom and have the same category. If no system is found with the specific category, the request returns a 400 status code. Allow fallback = true specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
 
-Supported file formats can be found [here](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/overview#batch-supported-document-formats).
+Supported file formats can be found [here](https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/overview#synchronous-supported-document-formats).
 
 ### **Transliterate**
 Transliterates the text to the target script. This action supports the following input parameters:
