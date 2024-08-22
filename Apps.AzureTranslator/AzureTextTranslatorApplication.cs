@@ -13,7 +13,7 @@ public class AzureTextTranslatorApplication : IApplication, ICategoryProvider
     
     public string Name
     {
-        get => "Azure Text Translator";
+        get => "Azure AI Translator";
         set { }
     }
 
