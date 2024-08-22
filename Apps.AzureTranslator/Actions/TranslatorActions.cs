@@ -19,6 +19,11 @@ namespace Apps.MicrosoftTranslator.Actions;
 public class TranslatorActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient)
     : AzureTextTranslatorInvocable(invocationContext)
 {
+    private static List<string> _supportedFileTypes =
+    [
+        ".txt", ".txv", ".tab", ".csv", ".html", ".htm", ".mthml", ".mht", ".pptx", ".xlsx", ".docx", ".msg", ".xlf", ".xliff"
+    ];
+    
     [Action("Translate", Description = "Translates the text to the target language.")]
     public async Task<TranslationResponse> Translate([ActionParameter] TextTranslationInput input)
     {
@@ -56,6 +61,12 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
     public async Task<TranslateDocumentResponse> TranslateDocument([ActionParameter] FileModel file,
         [ActionParameter] TranslationInput input)
     {
+        if (!_supportedFileTypes.Contains(file.File.GetFileExtension()))
+        {
+            throw new InvalidOperationException($"File type {file.File.GetFileExtension()} is not supported for translation. " +
+                                                $"Supported file types are: {string.Join(", ", _supportedFileTypes)}.");
+        }
+        
         var url = Creds.GetDocumentTranslationUrl();
         var key = Creds.Get(CredsNames.ApiKey).Value;
     
