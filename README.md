@@ -1,4 +1,4 @@
-# Blackbird.io Microsoft Translator
+# Blackbird.io Azure AI Translator
 
 Blackbird is the new automation backbone for the language technology industry. Blackbird provides enterprise-scale automation and orchestration with a simple no-code/low-code platform. Blackbird enables ambitious organizations to identify, vet and automate as many processes as possible. Not just localization workflows, but any business and IT process. This repository represents an application that is deployable on Blackbird and usable inside the workflow editor.
 
@@ -18,7 +18,7 @@ Before setting up the connection you must be known with the following:
 
 ## Connecting
 
-1. Navigate to Apps, and identify the **Microsoft Translator** app. You can use search to find it.
+1. Navigate to Apps, and identify the **Azure AI Translator** app. You can use search to find it.
 2. Click _Add Connection_.
 3. Name your connection for future reference e.g. 'My organization'.
 4. Fill all the required fields:
@@ -73,7 +73,7 @@ Transliterates the text to the target script. This action supports the following
 
 ## Example 
 
-Here is an example of how you can use the Microsoft Translator app in a workflow. In this example, we are translating a document from Google Drive to the target language and then sending the translated document back to a different folder.
+Here is an example of how you can use the Azure AI Translator app in a workflow. In this example, we are translating a document from Google Drive to the target language and then sending the translated document back to a different folder.
 
 ![Example](image/README/example.png)
 
