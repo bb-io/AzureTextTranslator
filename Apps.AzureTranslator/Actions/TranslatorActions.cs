@@ -12,6 +12,9 @@ using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
 using Blackbird.Applications.Sdk.Utils.Extensions.Files;
 using Blackbird.Applications.Sdk.Utils.Extensions.Sdk;
 using RestSharp;
+using Blackbird.Applications.Sdk.Common.Exceptions;
+using Newtonsoft.Json;
+using Apps.MicrosoftTranslator.Model.Dtos;
 
 namespace Apps.MicrosoftTranslator.Actions;
 
@@ -63,7 +66,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
     {
         if (!_supportedFileTypes.Contains(file.File.GetFileExtension()))
         {
-            throw new InvalidOperationException($"File type {file.File.GetFileExtension()} is not supported for translation. " +
+            throw new PluginMisconfigurationException($"File type {file.File.GetFileExtension()} is not supported for translation. " +
                                                 $"Supported file types are: {string.Join(", ", _supportedFileTypes)}.");
         }
         
@@ -103,7 +106,8 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
         var response = await client.ExecuteAsync(request);
         if (!response.IsSuccessful)
         {
-            throw response.GetException();
+            var error = JsonConvert.DeserializeObject<ErrorDto>(response.Content!)!;
+            throw new PluginApplicationException(error.ToString());
         }
     
         var byteResponse = response.RawBytes!;
