@@ -20,7 +20,7 @@ public class ConnectionValidator : IConnectionValidator
                 IsValid = true
             };
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return new()
             {
