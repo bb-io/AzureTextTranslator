@@ -42,7 +42,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
             ? new TextType(input.TextType) 
             : (TextType?)null;
 
-        var response = await Client.TranslateAsync(new[] { input.TargetLanguage }, 
+        var response = await ExecuteWithErrorHandlingAsync(async () => await Client.TranslateAsync(new[] { input.TargetLanguage }, 
             new[] { input.Text }, 
             sourceLanguage: input.SourceLanguage, 
             textType: textType, 
@@ -55,7 +55,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
             fromScript: input.FromScript,
             toScript: input.ToScript,
             allowFallback: input.AllowFallback ?? false
-        );
+        ));
 
         return new(response);
     }
@@ -103,7 +103,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
         request.AlwaysMultipartFormData = true;
         request.AddFile("document", bytes, file.File.Name, file.File.ContentType);
     
-        var response = await client.ExecuteAsync(request);
+        var response = await ExecuteWithErrorHandlingAsync(async () => await client.ExecuteAsync(request));
         if (!response.IsSuccessful)
         {
             var error = JsonConvert.DeserializeObject<ErrorDto>(response.Content!)!;
@@ -124,7 +124,7 @@ public class TranslatorActions(InvocationContext invocationContext, IFileManagem
     public async Task<TransliterationResponse> Transliterate([ActionParameter] TransliterationInput input)
     {
         var response =
-            await Client.TransliterateAsync(input.SourceLanguage, input.FromScript, input.ToScript, input.Text);
+            await ExecuteWithErrorHandlingAsync(async ()=> await Client.TransliterateAsync(input.SourceLanguage, input.FromScript, input.ToScript, input.Text));
         return new(response);
     }
 }
